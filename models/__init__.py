@@ -1,3 +1,3 @@
-from company import Company
-from position import Position
+from company import *
+from position import *
 from user import *
