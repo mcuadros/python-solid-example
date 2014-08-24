@@ -1,21 +1,7 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from services.sql import Mapper
-from models import UserRepository
-from models import PositionRepository
-from models import CompanyRepository
-
-# bootstrap
-engine = create_engine('sqlite:///:memory:', echo=False)
-metadata = Mapper().build_metadata()
-metadata.create_all(engine)
-session = sessionmaker(bind=engine)()
-
+from container import container
 
 # examples
-user_repository = UserRepository(session)
-company_repository = CompanyRepository(session)
-position_repository = PositionRepository(session)
+user_repository = container('models_user_repository')
 
 ## Plain case
 # insert
@@ -41,6 +27,9 @@ if len(found) == 0:
     print 'Deleted success!'
 
 ## Relational case
+company_repository = container('models_company_repository')
+position_repository = container('models_position_repository')
+
 # insert
 company = company_repository.new(name='Tyba')
 position = position_repository.new(title='Superb job', company=company)
