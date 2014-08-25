@@ -7,7 +7,6 @@ setup(
     packages=[
         'example',
         'example.models',
-        'example.services',
         'example.services.sql'
     ],
     install_requires=[

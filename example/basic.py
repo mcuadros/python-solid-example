@@ -1,4 +1,4 @@
-from container import container
+from example.container import container
 
 # examples
 user_repository = container('models_user_repository')
@@ -52,5 +52,6 @@ print 'Position: %s @ %s, Candidate(s): %d' % (
     found.company.name,
     len(found.candidates)
 )
+
 for candidate in found.candidates:
     print '\tCandidate %s' % candidate.email

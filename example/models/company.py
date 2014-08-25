@@ -1,5 +1,4 @@
-from services.sql.connector import Repository
-from services.sql.connector import Query
+import example.services.sql.connector as connector
 
 
 class Company(object):
@@ -9,13 +8,13 @@ class Company(object):
         self.name = name
 
 
-class CompanyQuery(Query):
+class CompanyQuery(connector.Query):
     def find_by_name(self, name):
         self._filter(Company.name == name)
 
         return self
 
 
-class CompanyRepository(Repository):
+class CompanyRepository(connector.Repository):
     _entity_class = Company
     _query_class = CompanyQuery

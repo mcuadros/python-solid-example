@@ -1,8 +1,7 @@
 import datetime
 import bcrypt
 
-from services.sql.connector import Repository
-from services.sql.connector import Query
+import example.services.sql.connector as connector
 
 
 class User(object):
@@ -30,7 +29,7 @@ class User(object):
         self.__dict__['password'] = bcrypt.hashpw(plain_password, self.salt)
 
 
-class UserQuery(Query):
+class UserQuery(connector.Query):
     def find_by_email(self, email):
         self._filter(User.email == email)
 
@@ -42,6 +41,6 @@ class UserQuery(Query):
         return self
 
 
-class UserRepository(Repository):
+class UserRepository(connector.Repository):
     _entity_class = User
     _query_class = UserQuery

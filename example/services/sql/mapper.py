@@ -6,9 +6,7 @@ from sqlalchemy import String
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapper
 from sqlalchemy.orm import relationship
-from models import User
-from models import Company
-from models import Position
+import example.models as models
 
 
 class Mapper(object):
@@ -24,7 +22,7 @@ class Mapper(object):
         self._metadata = MetaData()
 
     def _configure_metadata(self):
-        mapper(User, Table(
+        mapper(models.User, Table(
             'users',
             self._metadata,
             Column('id', Integer, primary_key=True),
@@ -37,7 +35,7 @@ class Mapper(object):
             Column('password', String(255)),
         ))
 
-        mapper(Company, Table(
+        mapper(models.Company, Table(
             'companies',
             self._metadata,
             Column('id', Integer, primary_key=True),
@@ -51,13 +49,13 @@ class Mapper(object):
             Column('position_id', Integer, ForeignKey('positions.id'))
         )
 
-        mapper(Position, Table(
+        mapper(models.Position, Table(
             'positions',
             self._metadata,
             Column('id', Integer, primary_key=True),
             Column('title', String(50)),
             Column('company_id', Integer, ForeignKey("companies.id")),
         ), properties={
-            'company': relationship(Company),
-            'candidates': relationship(User, secondary=association_table)
+            'company': relationship(models.Company),
+            'candidates': relationship(models.User, secondary=association_table)
         })

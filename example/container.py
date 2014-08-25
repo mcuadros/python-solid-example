@@ -16,9 +16,9 @@ def sqlalchemy_engine(container):
 
 @service(container)
 def sqlalchemy_metadata(container):
-    from services.sql import Mapper
+    import example.services.sql.mapper as sql
 
-    return Mapper().build_metadata()
+    return sql.Mapper().build_metadata()
 
 
 @service(container)
@@ -31,25 +31,22 @@ def sqlalchemy_session(container):
 
 @service(container)
 def models_user_repository(container):
-    container('sqlalchemy_session') # quick fix
-    from models import UserRepository
+    import example.models as models
 
-    return UserRepository(container('sqlalchemy_session'))
+    return models.UserRepository(container('sqlalchemy_session'))
 
 
 @service(container)
 def models_position_repository(container):
-    container('sqlalchemy_session') # quick fix
-    from models.position import PositionRepository
+    import example.models as models
 
-    return PositionRepository(container('sqlalchemy_session'))
+    return models.PositionRepository(container('sqlalchemy_session'))
 
 
 @service(container)
 def models_company_repository(container):
-    container('sqlalchemy_session') # quick fix
-    from models import CompanyRepository
+    import example.models as models
 
-    return CompanyRepository(container('sqlalchemy_session'))
+    return models.company.CompanyRepository(container('sqlalchemy_session'))
 
 
