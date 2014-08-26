@@ -1,4 +1,9 @@
-from domain.container import container
+import domain
+
+container = domain.create_container({
+    'db.fqn': 'sqlite:///:memory:',
+    'db.echo': False
+})
 
 user_repository = container('models_user_repository')
 company_repository = container('models_company_repository')
