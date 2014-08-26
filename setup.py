@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='python-solid-example',
+    name='domain',
     license='MIT',
     version='0.0.1',
     packages=[
