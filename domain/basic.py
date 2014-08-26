@@ -1,4 +1,4 @@
-from example.container import container
+from domain.container import container
 
 # examples
 user_repository = container('models_user_repository')

@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='python-orm-example',
+    name='python-solid-example',
     license='MIT',
     version='0.0.1',
     packages=[
-        'example',
-        'example.models',
-        'example.services',
-        'example.services.sql'
+        'domain',
+        'domain.models',
+        'domain.services',
+        'domain.services.sql'
     ],
     install_requires=[
         'knot >= 0.3.0',

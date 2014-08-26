@@ -1,4 +1,4 @@
-import example.services.sql.connector as connector
+import domain.services.sql.connector as connector
 
 
 class Company(object):

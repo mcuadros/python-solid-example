@@ -1,7 +1,7 @@
 import datetime
 import bcrypt
 
-import example.services.sql.connector as connector
+import domain.services.sql.connector as connector
 
 
 class User(object):

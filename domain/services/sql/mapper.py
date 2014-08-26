@@ -6,7 +6,7 @@ from sqlalchemy import String
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapper
 from sqlalchemy.orm import relationship
-import example.models as models
+import domain.models as models
 
 
 class Mapper(object):
@@ -57,5 +57,8 @@ class Mapper(object):
             Column('company_id', Integer, ForeignKey("companies.id")),
         ), properties={
             'company': relationship(models.Company),
-            'candidates': relationship(models.User, secondary=association_table)
+            'candidates': relationship(
+                models.User,
+                secondary=association_table
+            )
         })
