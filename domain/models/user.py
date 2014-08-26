@@ -30,6 +30,11 @@ class User(object):
 
 
 class UserQuery(connector.Query):
+    def find_by_id(self, id):
+        self._filter(User.id == id)
+
+        return self
+
     def find_by_email(self, email):
         self._filter(User.email == email)
 
