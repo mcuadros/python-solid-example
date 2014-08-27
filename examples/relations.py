@@ -1,10 +1,16 @@
 import domain
+import knot
 
-container = domain.create_container({
+# container bootstrap
+container = knot.Container({
     'db.fqn': 'sqlite:///:memory:',
     'db.echo': False
 })
 
+domain.apply_to_container(container)
+
+
+# Relational example
 user_repository = container('models_user_repository')
 company_repository = container('models_company_repository')
 position_repository = container('models_position_repository')

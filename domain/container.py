@@ -1,10 +1,7 @@
-from knot import Container
 from knot import service
 
 
-def create_container(config):
-    container = Container(config)
-
+def apply_to_container(container):
     @service(container)
     def sqlalchemy_engine(container):
         from sqlalchemy import create_engine
@@ -44,5 +41,3 @@ def create_container(config):
 
         session = container('sqlalchemy_session')
         return models.company.CompanyRepository(session)
-
-    return container

@@ -1,13 +1,18 @@
 import domain
+import knot
 
-container = domain.create_container({
+
+# container bootstrap
+container = knot.Container({
     'db.fqn': 'sqlite:///:memory:',
     'db.echo': False
 })
 
+domain.apply_to_container(container)
+
+# Plain case
 user_repository = container('models_user_repository')
 
-## Plain case
 # insert
 user = user_repository.new(email='maximo@tyba.com')
 user.first_name = 'Maximo'
